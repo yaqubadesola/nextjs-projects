@@ -14,24 +14,22 @@ export default Post
 
 
 export async function getStaticPaths(){
+    //
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts`)
+    const data  = await response.json()
+    const pathsArr = data.map(item => {
+        return {
+            params : {blogId: item.id.toString()}
+        }
+    })
+    
     return {
-        paths: [
-            {
-                params: {blogId : '1'}
-            },
-            {
-                params: {blogId : '2'}
-            },
-            {
-                params: {blogId : '3'}
-            }
-        ],
+        paths: pathsArr,
         fallback:false,  
     }
 }
 
 export async function getStaticProps(context){
-    console.log("context ",context)
     const { params } = context
     const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.blogId}`)
     const data  = await response.json()
