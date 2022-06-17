@@ -12,7 +12,13 @@ export default function Home() {
           <a>
             View all posts
           </a>
-        </Link>  
+        </Link>
+        <br/>
+        <Link href="/news">
+          <a>
+            View all news
+          </a>
+        </Link> 
     </div>
   )
 }
